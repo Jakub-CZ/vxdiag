@@ -15,17 +15,17 @@ def get_columns(csv_file, indices):
     if not is_sequence(indices):
         indices = [indices]
     with open(csv_file) as f:
-        for record in csv.reader(f):
-            yield (len(record), ) + tuple(record[i] for i in indices)
+        for i, record in enumerate(csv.reader(f)):
+            yield [i or "ROW", len(record)] + [record[i] for i in indices]
 
 
 def report_columns(csv_file, indices):
     print("\n" + format_pretty_table([["    %s    " % csv_file]], horizontal_bar="="))
     data = get_columns(csv_file, indices)
     header = next(data)
-    header_legend = list(zip(["length"] + list(string.ascii_letters), header))
+    header_legend = list(zip(["ROW", "LENGTH"] + list(string.ascii_letters), header))
     header_short = next(zip(*header_legend))
-    print(format_pretty_table(header_legend))
+    print(format_pretty_table(header_legend[1:]))
     print(format_pretty_table(data, header_short))
 
 
