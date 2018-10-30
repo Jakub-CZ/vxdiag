@@ -31,4 +31,4 @@ def report_columns(csv_file, indices):
 
 if __name__ == '__main__':
     for file in ["data/host-203-01.csv", "data/host-203-02.csv", "data/host-203-03-e.csv"]:
-        report_columns(file, list(range(29110, 29116)))
+        report_columns(file, [0] + list(range(29105, 29120)))
