@@ -16,7 +16,7 @@ if __name__ == '__main__':
     columns = [int(i) for i in args[2:]]
     intervals = list(zip(columns[::2], columns[1::2]))
     print(" vstupni soubor:\t%s" % csv_file)
-    print("        sloupce:\t%s" % "; ".join(str(t) for t in intervals))
+    print("        sloupce:\t%s" % ", ".join("(%d-%d)" % t for t in intervals))
     print("vystupni soubor:\t%s" % csv_file_out)
 
     save_as_csv(csv_file_out, slice_columns(csv_file, [i for a, b in intervals for i in range(a-1, b)]))
