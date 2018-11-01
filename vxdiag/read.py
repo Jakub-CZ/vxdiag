@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import csv
-import string
 from collections.abc import Sequence
 
 from humanfriendly.tables import format_pretty_table
@@ -39,9 +38,10 @@ def report_columns(csv_file, indices):
     print("\n" + format_pretty_table([["    %s    " % csv_file]], horizontal_bar="="))
     data = get_columns(csv_file, indices)
     header = next(data)
-    header_legend = list(zip(["ROW", "LENGTH"] + list(string.ascii_letters), header))
+    header_legend = list(zip(["ROW", "LENGTH"] + indices, header))
     header_short = next(zip(*header_legend))
-    print(format_pretty_table(header_legend[1:]))
+    print("Cisla a nazvy sloupcu:")
+    print(format_pretty_table(header_legend[2:]))
     print(format_pretty_table(data, header_short))
 
 
